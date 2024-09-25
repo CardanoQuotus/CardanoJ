@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="096377ed-8970-4294-8615-828d8604a493" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Kupomios.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Kupomios.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Kupomios.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/OgmiosAPIExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/OgmiosAPIExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/AddressProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/AddressProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/ByronAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/address/ByronAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/it/kupo/KupoUtxoServiceIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/it/ogmios/KupmiosBackendServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/KupmiosBackendService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/kupo/KupoUtxoService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/http/OgmiosBackendService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/http/OgmiosEpochService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/http/OgmiosTransactionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/websocket/Ogmios5BackendService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/websocket/Ogmios5EpochService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/main/ogmios/websocket/Ogmios5TransactionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/common/cbor/CborSerializationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/common/cbor/CborSerializationUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/UtxoSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/UtxoSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/common/OrderEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/common/OrderEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/config/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/helper/TransactionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/helper/TransactionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/model/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/model/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/transaction/model/MintTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/transaction/model/MintTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/util/AssetUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/util/AssetUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/util/PolicyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/coreapi/util/PolicyUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/Base58.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/Base58.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/Bech32.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/Bech32.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/Blake2bUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/Blake2bUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/CryptoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/CryptoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/KeyGenCborUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/KeyGenCborUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/KeyGenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/KeyGenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/Keys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/Keys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/SecretKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/SecretKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/VerificationKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/VerificationKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/api/SigningProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/api/SigningProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/api/impl/EdDSASigningProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/api/impl/EdDSASigningProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/HdKeyGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/HdKeyGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/HdKeyPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/HdKeyPair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/key/HdKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/key/HdKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/key/HdPrivateKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/key/HdPrivateKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/key/HdPublicKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/key/HdPublicKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/util/BytesUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/util/BytesUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip32/util/Hmac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip32/util/Hmac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/DefaultEntropyProviderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/DefaultEntropyProviderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/MnemonicCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/MnemonicCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/MnemonicException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/MnemonicException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/PBKDF2SHA512.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/PBKDF2SHA512.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/Sha256Hash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/Sha256Hash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/Words.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/Words.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39/api/EntropyProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/bip39/api/EntropyProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/cip1852/CIP1852.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/cip1852/CIP1852.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/cip1852/DerivationPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/cip1852/DerivationPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/cip1852/Segment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/cip1852/Segment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/config/CryptoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/config/CryptoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/exception/AddressFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/exception/AddressFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/exception/KeyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/exception/KeyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/metadata/cbor/CBORMetadata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/metadata/cbor/CBORMetadata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/spec/ConstrPlutusData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/spec/ConstrPlutusData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/spec/PlutusData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/spec/PlutusData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/util/ScriptDataHashGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/util/ScriptDataHashGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/spec/Script.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/spec/Script.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/supplier/kupo/KupoUtxoSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/supplier/kupo/KupoUtxoSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/TransactionSigner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/TransactionSigner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/AuxiliaryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/AuxiliaryData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/Policy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/cert/StakeCredential.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/cert/StakeCredential.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/cert/StakePoolId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/cert/StakePoolId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/governance/DRepId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/governance/DRepId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/script/ScriptPubkey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/spec/script/ScriptPubkey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/util/TransactionBytes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/util/TransactionBytes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/util/TransactionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/transaction/util/TransactionUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cardanoj/util/HexUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cardanoj/util/HexUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mnemonic/wordlist/english.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Kupomios" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Kupomios" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AnjaliSethy&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CardanoJ/cardanoJ.git&quot;,
+    &quot;accountId&quot;: &quot;948b178c-e0f0-41ef-8aff-bc5d6fd7f1ae&quot;
+  }
+}</component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="s6khn4tj" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2eU6qvvhYhPNFJDALAl1F5dcQ04" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Coverage&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Gradle.ADAConversionUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AccountExTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AddressEncoderDecoderUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AddressProviderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AddressServiceTest.getBaseAddress_whenIndex0_testnet.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AddressTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AddressUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Kupomios.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CBORSerializationTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConfigurationTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConstrDataJsonSerializerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConstrPlutusDataTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConstrPlutusDataTest.unitPlutusDataSerialization.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DefaultUtxoSelectionStrategyImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DefaultUtxoSelectorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExcludeUtxoSelectionStrategyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ExcludeUtxoSelectorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.FeeCalculationServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.KupmiosBackendServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.KupoUtxoServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.KupoUtxoServiceIT.getUtxos.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:CBORTest.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:Example.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:KupoUtxoSupplier.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:OgmiosAPIExample.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:SimpleTransfer.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:TestRun.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:TransactionObserver.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:TransactionWebSocketClient.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [:WebSocketExample.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.Kupomios [clean build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [jar].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Kupomios [test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MinAdaCalculatorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OSUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Ogmios5EpochServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Ogmios5EpochServiceIT.testGetLatestProtocolParameters.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.Ogmios5TransactionServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OgmiosEpochServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OgmiosTransactionServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PointerAddressTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RandomImproveUtxoTransactionBuilderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ScriptDataHashGeneratorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SignerProvidersTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StringUtilsTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TransactionBuilderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TransactionExTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TransactionSignerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TransactionUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UtxoTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UtxoTransactionBuilderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.UtxoUtilTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceTxBuildersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CollateralBuildersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KupoUtxoServiceIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.KupoUtxoSupplierTest.getTxOutput_SuccessfulResult_ReturnsOptionalUtxo.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.OutputAmountVerifierTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.QuickTxBuilderTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ScriptUtxoFindersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SignerProvidersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TxVerifiersTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;anjali-ogmosis&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/root1/Desktop/Kupomios/src/main/java/com/cardanoj&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/cardanoj" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/cardanoj/crypto/main/bip39" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.cardanoj.quicktx.src.main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.OgmiosTransactionServiceIT">
+    <configuration name="KupmiosBackendServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cardanoj.backendmodule.ogmios.ogmios.KupmiosBackendServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Ogmios5EpochServiceIT" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cardanoj.backendmodule.ogmios.ogmios.websocket.Ogmios5EpochServiceIT&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Ogmios5TransactionServiceIT" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cardanoj.backendmodule.ogmios.ogmios.websocket.Ogmios5TransactionServiceIT&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="OgmiosEpochServiceIT" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cardanoj.backendmodule.ogmios.ogmios.OgmiosEpochServiceIT&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="OgmiosTransactionServiceIT" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cardanoj.backendmodule.ogmios.ogmios.OgmiosTransactionServiceIT&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.OgmiosTransactionServiceIT" />
+        <item itemvalue="Gradle.OgmiosEpochServiceIT" />
+        <item itemvalue="Gradle.Ogmios5TransactionServiceIT" />
+        <item itemvalue="Gradle.Ogmios5EpochServiceIT" />
+        <item itemvalue="Gradle.KupmiosBackendServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="096377ed-8970-4294-8615-828d8604a493" name="Changes" comment="" />
+      <created>1711947005710</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711947005710</updated>
+      <workItem from="1711947008816" duration="682000" />
+      <workItem from="1711947801861" duration="1123000" />
+      <workItem from="1712036548681" duration="145000" />
+      <workItem from="1712037160114" duration="2431000" />
+      <workItem from="1712040927758" duration="15118000" />
+      <workItem from="1712117788520" duration="21844000" />
+      <workItem from="1712212280633" duration="12694000" />
+      <workItem from="1712290282136" duration="6056000" />
+      <workItem from="1712300103983" duration="13246000" />
+      <workItem from="1712316229738" duration="878000" />
+      <workItem from="1712550592165" duration="21015000" />
+      <workItem from="1712637112475" duration="15908000" />
+      <workItem from="1712722357629" duration="12293000" />
+      <workItem from="1712895276131" duration="17906000" />
+      <workItem from="1713154128568" duration="5723000" />
+      <workItem from="1713242531718" duration="1100000" />
+      <workItem from="1714126249204" duration="5182000" />
+      <workItem from="1714450464305" duration="20133000" />
+      <workItem from="1714622782243" duration="2373000" />
+      <workItem from="1714653449730" duration="160000" />
+      <workItem from="1714710120047" duration="6067000" />
+      <workItem from="1714969372025" duration="5188000" />
+      <workItem from="1714977655599" duration="1659000" />
+      <workItem from="1714991958254" duration="2620000" />
+      <workItem from="1715055678687" duration="870000" />
+      <workItem from="1715073277898" duration="2300000" />
+      <workItem from="1715080049390" duration="2933000" />
+      <workItem from="1715320334514" duration="1837000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/it/kupo/KupoUtxoServiceIT.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cardanoj/coinselection/impl/ExcludeUtxoSelectorTest.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cardanoj/coreapi/address/AddressTest.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/quicktx/test/quicktx/verifiers/TxVerifiersTest.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/function/test/function/helper/BalanceTxBuildersTest.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/SimpleTransfer.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/WebSocketExample.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/Example.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/plutus/spec/PlutusData.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cardanoj/plutus/spec/ConstrPlutusDataTest.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cardanoj/backendmodule/ogmios/ogmios/websocket/Ogmios5EpochServiceIT.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cardanoj/backendmodule/ogmios/ogmios/websocket/Ogmios5EpochService.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cardanoj/function/helper/SignerProvidersTest.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cardanoj/backendmodule/ogmios/ogmios/OgmiosEpochServiceIT.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Kupomios$Main.ic" NAME="Main Coverage Results" MODIFIED="1712219939091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.cardanoj.*</FILTER>
+    </SUITE>
+  </component>
+</project>

@@ -1,0 +1,529 @@
+package com.cardanoj.quicktx;
+
+import com.cardanoj.coreapi.account.Account;
+import com.cardanoj.address.Address;
+import com.cardanoj.address.Credential;
+import com.cardanoj.coreapi.model.Amount;
+import com.cardanoj.coreapi.model.Utxo;
+import com.cardanoj.coreapi.util.AssetUtil;
+import com.cardanoj.function.TxBuilder;
+import com.cardanoj.function.exception.TxBuildException;
+import com.cardanoj.transaction.spec.Asset;
+import com.cardanoj.transaction.spec.Transaction;
+import com.cardanoj.transaction.spec.cert.PoolRegistration;
+import com.cardanoj.transaction.spec.governance.Anchor;
+import com.cardanoj.transaction.spec.governance.DRep;
+import com.cardanoj.transaction.spec.governance.Vote;
+import com.cardanoj.transaction.spec.governance.Voter;
+import com.cardanoj.transaction.spec.governance.actions.GovAction;
+import com.cardanoj.transaction.spec.governance.actions.GovActionId;
+import com.cardanoj.transaction.spec.script.NativeScript;
+import com.cardanoj.util.Tuple;
+import lombok.NonNull;
+
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Set;
+
+public class Tx extends AbstractTx<Tx> {
+
+    private StakeTx stakeTx;
+    private GovTx govTx;
+
+    private String sender;
+    protected boolean senderAdded = false;
+
+    /**
+     * Create Tx
+     */
+    public Tx() {
+        stakeTx = new StakeTx();
+        govTx = new GovTx();
+    }
+
+    /**
+     * Add a mint asset to the transaction. The newly minted asset will be transferred to the defined receivers in payToAddress methods.
+     * <p>
+     * This method can also be used to burn assets by passing a negative quantity.
+     * </p>
+     *
+     * @param script Policy script
+     * @param asset  Asset to mint
+     * @return Tx
+     */
+    public Tx mintAssets(@NonNull NativeScript script, Asset asset) {
+        return mintAssets(script, List.of(asset), null);
+    }
+
+    /**
+     * Add a mint asset to the transaction. The newly minted asset will be transferred to the receiver address.
+     *
+     * @param script   Policy script
+     * @param asset    Asset to mint
+     * @param receiver Receiver address
+     * @return Tx
+     */
+    public Tx mintAssets(@NonNull NativeScript script, Asset asset, String receiver) {
+        return mintAssets(script, List.of(asset), receiver);
+    }
+
+    /**
+     * Add mint assets to the transaction. The newly minted assets will be transferred to the defined receivers in payToAddress methods.
+     * <p>
+     * This method can also be used to burn assets by passing a negative quantity.
+     * </p>
+     *
+     * @param script Policy script
+     * @param assets List of assets to mint
+     * @return Tx
+     */
+    public Tx mintAssets(@NonNull NativeScript script, List<Asset> assets) {
+        return mintAssets(script, assets, null);
+    }
+
+    /**
+     * Add mint assets to the transaction. The newly minted assets will be transferred to the receiver address.
+     *
+     * @param script   Policy script
+     * @param assets   List of assets to mint
+     * @param receiver Receiver address
+     * @return Tx
+     */
+    public Tx mintAssets(@NonNull NativeScript script, List<Asset> assets, String receiver) {
+        try {
+            String policyId = script.getPolicyId();
+            if (receiver != null) { //If receiver address is defined
+                assets.forEach(asset -> {
+                    payToAddress(receiver,
+                            List.of(new Amount(AssetUtil.getUnit(policyId, asset), asset.getValue())));
+                });
+            }
+
+            addToMultiAssetList(script, assets);
+        } catch (Exception e) {
+            throw new TxBuildException(e);
+        }
+
+        return this;
+    }
+
+    /**
+     * Create Tx with a sender address. The application needs to provide the signer for this sender address.
+     * A Tx object can have only one sender. This method should be called after all outputs are defined.
+     *
+     * @param sender sender address
+     * @return Tx
+     */
+    public Tx from(String sender) {
+        verifySenderNotExists();
+        this.sender = sender;
+        this.senderAdded = true;
+        return this;
+    }
+
+    /**
+     * Create Tx with given utxos as inputs.
+     * @param utxos List of utxos
+     * @return Tx
+     */
+    public Tx collectFrom(List<Utxo> utxos) {
+        this.inputUtxos = utxos;
+        return this;
+    }
+
+    /**
+     * Create Tx with given utxos as inputs.
+     * @param utxos Set of utxos
+     * @return Tx
+     */
+    public Tx collectFrom(Set<Utxo> utxos) {
+        this.inputUtxos = List.copyOf(utxos);
+        return this;
+    }
+
+    /**
+     * Register stake address
+     * @param address address to register. Address should have delegation credential. So it should be a base address or stake address.
+     * @return Tx
+     */
+    public Tx registerStakeAddress(@NonNull String address) {
+        stakeTx.registerStakeAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Register stake address
+     * @param address address to register. Address should have delegation credential. So it should be a base address or stake address.
+     * @return Tx
+     */
+    public Tx registerStakeAddress(@NonNull Address address) {
+        stakeTx.registerStakeAddress(address);
+        return this;
+    }
+
+    /**
+     * De-register stake address. The key deposit will be refunded to the change address or fee payer if change address is not specified
+     * @param address address to de-register. Address should have delegation credential. So it should be a base address or stake address.
+     * @return Tx
+     */
+    public Tx deregisterStakeAddress(@NonNull String address) {
+        stakeTx.deregisterStakeAddress(new Address(address), null, null);
+        return this;
+    }
+
+    /**
+     * De-register stake address. The key deposit will be refunded to the change address or fee payer if change address is not specified
+     * @param address address to de-register. Address should have delegation credential. So it should be a base address or stake address.
+     * @return Tx
+     */
+    public Tx deregisterStakeAddress(@NonNull Address address) {
+        stakeTx.deregisterStakeAddress(address, null, null);
+        return this;
+    }
+
+    /**
+     * De-register stake address. The key deposit will be refunded to the refund address.
+     * @param address address to de-register. Address should have delegation credential. So it should be a base address or stake address.
+     * @param refundAddr refund address
+     * @return T
+     */
+    public Tx deregisterStakeAddress(@NonNull String address, @NonNull String refundAddr) {
+        stakeTx.deregisterStakeAddress(new Address(address), null, refundAddr);
+        return this;
+    }
+
+    /**
+     * De-register stake address. The key deposit will be refunded to the refund address.
+     * @param address address to de-register. Address should have delegation credential. So it should be a base address or stake address.
+     * @param refundAddr refund address
+     * @return T
+     */
+    public Tx deregisterStakeAddress(@NonNull Address address, @NonNull String refundAddr) {
+        stakeTx.deregisterStakeAddress(address, null, refundAddr);
+        return this;
+    }
+
+    /**
+     * Delegate stake address to a stake pool
+     * @param address address to delegate. Address should have delegation credential. So it should be a base address or stake address.
+     * @param poolId stake pool id Bech32 or hex encoded
+     * @return ScriptTx
+     */
+    public Tx delegateTo(@NonNull String address, @NonNull String poolId) {
+        stakeTx.delegateTo(new Address(address), poolId, null);
+        return this;
+    }
+
+    /**
+     * Delegate stake address to a stake pool
+     * @param address address to delegate. Address should have delegation credential. So it should be a base address or stake address.
+     * @param poolId stake pool id Bech32 or hex encoded
+     * @return ScriptTx
+     */
+    public Tx delegateTo(@NonNull Address address, @NonNull String poolId) {
+        stakeTx.delegateTo(address, poolId, null);
+        return this;
+    }
+
+    /**
+     * Withdraw rewards from a stake address
+     * @param rewardAddress stake address to withdraw rewards from
+     * @param amount  amount to withdraw
+     * @return Tx
+     */
+    public Tx withdraw(@NonNull String rewardAddress, @NonNull BigInteger amount) {
+        stakeTx.withdraw(new Address(rewardAddress), amount, null, null);
+        return this;
+    }
+
+    /**
+     * Withdraw rewards from a stake address
+     * @param rewardAddress stake address to withdraw rewards from
+     * @param amount amount to withdraw
+     * @return Tx
+     */
+    public Tx withdraw(@NonNull Address rewardAddress, @NonNull BigInteger amount) {
+        stakeTx.withdraw(rewardAddress, amount, null, null);
+        return this;
+    }
+
+    /**
+     * Withdraw rewards from a stake address
+     * @param rewardAddress stake address to withdraw rewards from
+     * @param amount amount to withdraw
+     * @param receiver receiver address
+     * @return Tx
+     */
+    public Tx withdraw(@NonNull String rewardAddress, @NonNull BigInteger amount, String receiver) {
+        stakeTx.withdraw(new Address(rewardAddress), amount, null, receiver);
+        return this;
+    }
+
+    /**
+     * Withdraw rewards from a stake address
+     * @param rewardAddress stake address to withdraw rewards from
+     * @param amount amount to withdraw
+     * @param receiver receiver address
+     * @return Tx
+     */
+    public Tx withdraw(@NonNull Address rewardAddress, @NonNull BigInteger amount, String receiver) {
+        stakeTx.withdraw(rewardAddress, amount, null, receiver);
+        return this;
+    }
+
+    /**
+     * Register a stake pool
+     * @param poolRegistration stake pool registration certificate
+     * @return Tx
+     */
+    public Tx registerPool(@NonNull PoolRegistration poolRegistration) {
+        stakeTx.registerPool(poolRegistration);
+        return this;
+    }
+
+    /**
+     * Update a stake pool
+     * @param poolRegistration
+     * @return Tx
+     */
+    public Tx updatePool(@NonNull PoolRegistration poolRegistration) {
+        stakeTx.updatePool(poolRegistration);
+        return this;
+    }
+
+    /**
+     * Retire a stake pool
+     * @param poolId stake pool id Bech32 or hex encoded
+     * @param epoch epoch to retire the pool
+     * @return Tx
+     */
+    public Tx retirePool(String poolId, int epoch) {
+        stakeTx.retirePool(poolId, epoch);
+        return this;
+    }
+
+
+    /**
+     * Register a DRep
+     * @param account Account
+     * @param anchor Anchor
+     * @return Tx
+     */
+    public Tx registerDRep(@NonNull Account account, Anchor anchor) {
+        govTx.registerDRep(account.drepCredential(), anchor);
+        return this;
+    }
+
+    /**
+     * Register a DRep
+     * @param account Account
+     * @return Tx
+     */
+    public Tx registerDRep(@NonNull Account account) {
+        registerDRep(account, null);
+        return this;
+    }
+
+    /**
+     * Register a DRep
+     * @param drepCredential Credential
+     * @param anchor Anchor
+     * @return Tx
+     */
+    public Tx registerDRep(@NonNull Credential drepCredential, Anchor anchor) {
+        govTx.registerDRep(drepCredential, anchor);
+        return this;
+    }
+
+    /**
+     * Register a DRep
+     * @param drepCredential
+     * @return Tx
+     */
+    public Tx registerDRep(@NonNull Credential drepCredential) {
+        registerDRep(drepCredential, null);
+        return this;
+    }
+
+    /**
+     * Unregister a DRep
+     * @param drepCredential Credential
+     * @param refaundAddress Refund address
+     * @param refundAmount Refund amount
+     * @return Tx
+     */
+    public Tx unregisterDRep(@NonNull Credential drepCredential, String refaundAddress, BigInteger refundAmount) {
+        govTx.unregisterDRep(drepCredential, refaundAddress, refundAmount);
+        return this;
+    }
+
+    /**
+     * Unregister a DRep
+     * @param drepCredential Credential
+     * @return Tx
+     */
+    public Tx unregisterDRep(@NonNull Credential drepCredential) {
+        govTx.unregisterDRep(drepCredential, null, null);
+        return this;
+    }
+
+    /**
+     * Update a DRep
+     * @param drepCredential Credential
+     * @param anchor Anchor
+     * @return Tx
+     */
+    public Tx updateDRep(@NonNull Credential drepCredential, Anchor anchor) {
+        govTx.updateDRep(drepCredential, anchor);
+        return this;
+    }
+
+    /**
+     * Update a DRep
+     * @param drepCredential Credential
+     * @return Tx
+     */
+    public Tx updateDRep(@NonNull Credential drepCredential) {
+        govTx.updateDRep(drepCredential, null);
+        return this;
+    }
+
+    /**
+     * Create a new governance proposal
+     * @param govAction GovAction
+     * @param deposit Deposit
+     * @param rewardAccount return address for the deposit refund
+     * @param anchor Anchor
+     * @return Tx
+     */
+    public Tx createProposal(@NonNull GovAction govAction, @NonNull BigInteger deposit, @NonNull String rewardAccount, Anchor anchor) {
+        govTx.createProposal(govAction, deposit, rewardAccount, anchor);
+        return this;
+    }
+
+    /**
+     * Create a voting procedure
+     * @param voter Voter
+     * @param govActionId GovActionId
+     * @param vote Vote
+     * @param anchor
+     * @return Tx
+     */
+    public Tx createVote(@NonNull Voter voter, @NonNull GovActionId govActionId, @NonNull Vote vote, Anchor anchor) {
+        govTx.createVote(voter, govActionId, vote, anchor);
+        return this;
+    }
+
+    /**
+     * Create a voting procedure
+     * @param voter Voter
+     * @param govActionId GovActionId
+     * @param vote Vote
+     * @return Tx
+     */
+    public Tx createVote(@NonNull Voter voter, @NonNull GovActionId govActionId, @NonNull Vote vote) {
+        govTx.createVote(voter, govActionId, vote, null);
+        return this;
+    }
+
+    /**
+     * Delegate voting power to a DRep
+     * @param address Address
+     * @param drep Drep
+     * @return Tx
+     */
+    public Tx delegateVotingPowerTo(@NonNull String address, @NonNull DRep drep) {
+        govTx.delegateVotingPowerTo(new Address(address), drep);
+        return this;
+    }
+
+    /**
+     * Delegate voting power to a DRep
+     * @param address Address
+     * @param drep Drep
+     * @return Tx
+     */
+    public Tx delegateVotingPowerTo(@NonNull Address address, @NonNull DRep drep) {
+        govTx.delegateVotingPowerTo(address, drep);
+        return this;
+    }
+
+    /**
+     * Sender address
+     *
+     * @return String
+     */
+    String sender() {
+        if (sender != null)
+            return sender;
+        else
+            return null;
+    }
+
+    @Override
+    protected String getChangeAddress() {
+        if (changeAddress != null)
+            return changeAddress;
+        else if (sender != null)
+            return sender;
+        else
+            throw new TxBuildException("No change address. " +
+                    "Please define at least one of sender address or sender account or change address");
+    }
+
+    @Override
+    protected String getFromAddress() {
+        if (sender != null)
+            return sender;
+        else
+            throw new TxBuildException("No sender address or sender account defined");
+    }
+
+    @Override
+    protected void postBalanceTx(Transaction transaction) {
+
+    }
+
+    @Override
+    protected void verifyData() {
+
+    }
+
+    @Override
+    protected String getFeePayer() {
+        if (sender != null)
+            return sender;
+        else
+            return null;
+    }
+
+    @Override
+    TxBuilder complete() {
+       Tuple<List<StakeTx.PaymentContext>, TxBuilder> stakeBuildTuple =
+               stakeTx.build(getFromAddress(), getChangeAddress());
+
+        for (StakeTx.PaymentContext paymentContext: stakeBuildTuple._1) {
+            payToAddress(paymentContext.getAddress(), paymentContext.getAmount());
+        }
+
+        //Gov txs
+        Tuple<List<GovTx.PaymentContext>, TxBuilder> govBuildTuple =
+                govTx.build(getFromAddress(), getChangeAddress());
+
+        for (GovTx.PaymentContext paymentContext: govBuildTuple._1) {
+            payToAddress(paymentContext.getAddress(), paymentContext.getAmount());
+        }
+
+        TxBuilder txBuilder = super.complete();
+
+        txBuilder = txBuilder.andThen(stakeBuildTuple._2)
+                .andThen(govBuildTuple._2);
+
+        return txBuilder;
+    }
+
+    private void verifySenderNotExists() {
+        if (senderAdded)
+            throw new TxBuildException("Sender already added. Cannot add additional sender.");
+    }
+}

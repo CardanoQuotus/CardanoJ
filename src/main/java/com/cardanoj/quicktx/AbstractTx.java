@@ -1,0 +1,390 @@
+package com.cardanoj.quicktx;
+
+import com.cardanoj.coreapi.model.Amount;
+import com.cardanoj.coreapi.model.Utxo;
+import com.cardanoj.coreapi.util.AssetUtil;
+import com.cardanoj.exception.CborRuntimeException;
+import com.cardanoj.exception.CborSerializationException;
+import com.cardanoj.function.TxBuilder;
+import com.cardanoj.function.TxOutputBuilder;
+import com.cardanoj.function.exception.TxBuildException;
+import com.cardanoj.function.helper.AuxDataProviders;
+import com.cardanoj.function.helper.InputBuilders;
+import com.cardanoj.function.helper.MintCreators;
+import com.cardanoj.function.helper.OutputBuilders;
+import com.cardanoj.metadata.Metadata;
+import com.cardanoj.plutus.spec.PlutusData;
+import com.cardanoj.spec.Script;
+import com.cardanoj.transaction.spec.*;
+import com.cardanoj.util.HexUtil;
+import com.cardanoj.util.Tuple;
+import lombok.NonNull;
+import lombok.SneakyThrows;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.cardanoj.common.CardanoConstants.LOVELACE;
+
+public abstract class AbstractTx<T> {
+    protected List<TransactionOutput> outputs;
+    protected List<Tuple<Script, MultiAsset>> multiAssets;
+    protected Metadata txMetadata;
+    //custom change address
+    protected String changeAddress;
+    protected List<Utxo> inputUtxos;
+
+    //Required for script
+    protected PlutusData changeData;
+    protected String changeDatahash;
+
+    /**
+     * Add an output to the transaction. This method can be called multiple times to add multiple outputs.
+     *
+     * @param address Address to send the output
+     * @param amount  Amount to send
+     * @return T
+     */
+    public T payToAddress(String address, Amount amount) {
+        return payToAddress(address, List.of(amount), null, null, null, null);
+    }
+
+    /**
+     * Add an output to the transaction. This method can be called multiple times to add multiple outputs.
+     *
+     * @param address Address to send the output
+     * @param amounts List of Amount to send
+     * @return T
+     */
+    public T payToAddress(String address, List<Amount> amounts) {
+        return payToAddress(address, amounts, null, null, null, null);
+    }
+
+    /**
+     * Add an output to the transaction. This method can be called multiple times to add multiple outputs.
+     *
+     * @param address address
+     * @param amounts List of Amount to send
+     * @param script  Reference Script
+     * @return T
+     */
+    public T payToAddress(String address, List<Amount> amounts, Script script) {
+        return payToAddress(address, amounts, null, null, script, null);
+    }
+
+    /**
+     * Add an output to the transaction. This method can be called multiple times to add multiple outputs.
+     *
+     * @param address        address
+     * @param amounts        List of Amount to send
+     * @param scriptRefBytes Reference Script bytes
+     * @return T
+     */
+    public T payToAddress(String address, List<Amount> amounts, byte[] scriptRefBytes) {
+        return payToAddress(address, amounts, null, null, null, scriptRefBytes);
+    }
+
+    /**
+     * Add an output at contract address with amount and inline datum.
+     *
+     * @param address contract address
+     * @param amount  amount
+     * @param datum   inline datum
+     * @return T
+     */
+    public T payToContract(String address, Amount amount, PlutusData datum) {
+        return payToAddress(address, List.of(amount), null, datum, null, null);
+    }
+
+    /**
+     * Add an output at contract address with amounts and inline datum.
+     *
+     * @param address contract address
+     * @param amounts amounts
+     * @param datum   inline datum
+     * @return T
+     */
+    public T payToContract(String address, List<Amount> amounts, PlutusData datum) {
+        return payToAddress(address, amounts, null, datum, null, null);
+    }
+
+    /**
+     * Add an output at contract address with amount and datum hash.
+     *
+     * @param address   contract address
+     * @param amount    amount
+     * @param datumHash datum hash
+     * @return T
+     */
+    public T payToContract(String address, Amount amount, String datumHash) {
+        return payToAddress(address, List.of(amount), HexUtil.decodeHexString(datumHash), null, null, null);
+    }
+
+    /**
+     * Add an output at contract address with amount and datum hash.
+     *
+     * @param address   contract address
+     * @param amounts   list of amounts
+     * @param datumHash datum hash
+     * @return T
+     */
+    public T payToContract(String address, List<Amount> amounts, String datumHash) {
+        return payToAddress(address, amounts, HexUtil.decodeHexString(datumHash), null, null, null);
+    }
+
+    /**
+     * Add an output at contract address with amounts, inline datum and reference script.
+     *
+     * @param address   address
+     * @param amounts   List of Amount to send
+     * @param datum     Plutus data
+     * @param refScript Reference Script
+     * @return T
+     */
+    public T payToContract(String address, List<Amount> amounts, PlutusData datum, Script refScript) {
+        return payToAddress(address, amounts, null, datum, refScript, null);
+    }
+
+
+    /**
+     * Add an output at contract address with amounts, inline datum and reference script bytes.
+     *
+     * @param address        address
+     * @param amounts        List of Amount to send
+     * @param datum          Plutus data
+     * @param scriptRefBytes Reference Script bytes
+     * @return T
+     */
+    public T payToContract(String address, List<Amount> amounts, PlutusData datum, byte[] scriptRefBytes) {
+        return payToAddress(address, amounts, null, datum, null, scriptRefBytes);
+    }
+
+    /**
+     * Add an output to the transaction.
+     *
+     * @param address        address
+     * @param amounts        List of Amount to send
+     * @param datumHash      datum hash
+     * @param datum          inline datum
+     * @param scriptRef      Reference Script
+     * @param scriptRefBytes Reference Script bytes
+     * @return T
+     */
+    protected T payToAddress(String address, List<Amount> amounts, byte[] datumHash, PlutusData datum, Script scriptRef, byte[] scriptRefBytes) {
+        if (scriptRef != null && scriptRefBytes != null && scriptRefBytes.length > 0)
+            throw new TxBuildException("Both scriptRef and scriptRefBytes cannot be set. Only one of them can be set");
+
+        if (datumHash != null && datumHash.length > 0 && datum != null)
+            throw new TxBuildException("Both datumHash and datum cannot be set. Only one of them can be set");
+
+        TransactionOutput transactionOutput = TransactionOutput.builder()
+                .address(address)
+                .value(Value.builder().coin(BigInteger.ZERO).build())
+                .build();
+
+        for (Amount amount : amounts) {
+            String unit = amount.getUnit();
+            if (unit.equals(LOVELACE)) {
+                transactionOutput.getValue().setCoin(amount.getQuantity());
+            } else {
+                Tuple<String, String> policyAssetName = AssetUtil.getPolicyIdAndAssetName(unit);
+                Asset asset = new Asset(policyAssetName._2, amount.getQuantity());
+                MultiAsset multiAsset = new MultiAsset(policyAssetName._1, List.of(asset));
+                Value newValue = transactionOutput.getValue().plus(new Value(BigInteger.ZERO, List.of(multiAsset)));
+                transactionOutput.setValue(newValue);
+            }
+        }
+
+        //set datum
+        if (datum != null) {
+            transactionOutput.setInlineDatum(datum);
+        } else if (datumHash != null) {
+            transactionOutput.setDatumHash(datumHash);
+        }
+
+        if (scriptRef != null) {
+            transactionOutput.setScriptRef(scriptRef);
+        } else if (scriptRefBytes != null)
+            transactionOutput.setScriptRef(scriptRefBytes);
+
+        if (outputs == null)
+            outputs = new ArrayList<>();
+        outputs.add(transactionOutput);
+
+        return (T) this;
+    }
+
+
+    /**
+     * This is an optional method. By default, the change address is same as the sender address.<br>
+     * This method is used to set a different change address.
+     * <br><br>
+     * By default, if there is a single Tx during a transaction with a custom change address, the default fee payer is set to the
+     * custom change address in Tx. So that the fee is deducted from the change output.
+     * <br><br>
+     * But for a custom change address in Tx and a custom fee payer, make sure feePayer address (which is set through {@link QuickTxBuilder})
+     * has enough balance to pay the fee after all outputs .
+     *
+     * @param changeAddress
+     * @return T
+     */
+    public T withChangeAddress(String changeAddress) {
+        this.changeAddress = changeAddress;
+        return (T) this;
+    }
+
+    /**
+     * Add metadata to the transaction.
+     *
+     * @param metadata
+     * @return Tx
+     */
+    public T attachMetadata(Metadata metadata) {
+        if (this.txMetadata == null)
+            this.txMetadata = metadata;
+        else
+            this.txMetadata = this.txMetadata.merge(metadata);
+        return (T) this;
+    }
+
+    TxBuilder complete() {
+        TxOutputBuilder txOutputBuilder = null;
+        //Define outputs
+        if (outputs != null) {
+            for (TransactionOutput output : outputs) {
+                if (txOutputBuilder == null)
+                    txOutputBuilder = OutputBuilders.createFromOutput(output);
+                else
+                    txOutputBuilder = txOutputBuilder.and(OutputBuilders.createFromOutput(output));
+            }
+        }
+
+        //Add multi assets to tx builder context
+        if (multiAssets != null && !multiAssets.isEmpty()) {
+            if (txOutputBuilder == null)
+                txOutputBuilder = (context, txn) -> {
+                };
+
+            txOutputBuilder = txOutputBuilder.and((context, txn) -> {
+                if (context.getMintMultiAssets() == null || context.getMintMultiAssets().isEmpty()) {
+                    multiAssets.forEach(multiAssetTuple -> {
+                        context.addMintMultiAsset(multiAssetTuple._2);
+                    });
+                }
+            });
+        }
+
+        TxBuilder txBuilder;
+        if (txOutputBuilder == null) {
+            txBuilder = (context, txn) -> {
+            };
+        } else {
+            //Build inputs
+            if (inputUtxos != null && !inputUtxos.isEmpty()) {
+                txBuilder = buildInputBuildersFromUtxos(txOutputBuilder);
+            } else {
+                txBuilder = buildInputBuilders(txOutputBuilder);
+            }
+        }
+
+        //Mint assets
+        if (multiAssets != null && !multiAssets.isEmpty()) {
+            for (Tuple<Script, MultiAsset> multiAssetTuple : multiAssets) {
+                txBuilder = txBuilder
+                        .andThen(MintCreators.mintCreator(multiAssetTuple._1, multiAssetTuple._2));
+            }
+        }
+
+        //Add metadata
+        if (txMetadata != null)
+            txBuilder = txBuilder.andThen(AuxDataProviders.metadataProvider(txMetadata));
+
+        return txBuilder;
+    }
+
+    private TxBuilder buildInputBuilders(TxOutputBuilder txOutputBuilder) {
+        String _changeAddress = getChangeAddress();
+        String _fromAddress = getFromAddress();
+        TxBuilder txBuilder = txOutputBuilder.buildInputs(InputBuilders.createFromSender(_fromAddress, _changeAddress));
+
+        return txBuilder;
+    }
+
+    private TxBuilder buildInputBuildersFromUtxos(TxOutputBuilder txOutputBuilder) {
+        String _changeAddr = getChangeAddress();
+
+        TxBuilder txBuilder;
+        if (changeData != null) {
+            txBuilder = txOutputBuilder.buildInputs(InputBuilders.createFromUtxos(inputUtxos, _changeAddr, changeData));
+        } else if (changeDatahash != null) {
+            txBuilder = txOutputBuilder.buildInputs(InputBuilders.createFromUtxos(inputUtxos, _changeAddr, changeDatahash));
+        } else {
+            txBuilder = txOutputBuilder.buildInputs(InputBuilders.createFromUtxos(inputUtxos, _changeAddr));
+        }
+
+        return txBuilder;
+    }
+
+    @SneakyThrows
+    protected void addToMultiAssetList(@NonNull Script script, List<Asset> assets) {
+        String policyId = script.getPolicyId();
+        MultiAsset multiAsset = MultiAsset.builder()
+                .policyId(policyId)
+                .assets(assets)
+                .build();
+
+        if (multiAssets == null)
+            multiAssets = new ArrayList<>();
+
+        //Check if multiasset already exists
+        //If there is another mulitasset with same policy id, add the assets to that multiasset and use MultiAsset.plus method
+        //to create a new multiasset
+        multiAssets.stream().filter(ma -> {
+            try {
+                return ma._1.getPolicyId().equals(script.getPolicyId());
+            } catch (CborSerializationException e) {
+                throw new CborRuntimeException(e);
+            }
+        }).findFirst().ifPresentOrElse(ma -> {
+            multiAssets.remove(ma);
+            multiAssets.add(new Tuple<>(script, ma._2.plus(multiAsset)));
+        }, () -> {
+            multiAssets.add(new Tuple<>(script, multiAsset));
+        });
+    }
+
+    /**
+     * Return change address
+     *
+     * @return String
+     */
+    protected abstract String getChangeAddress();
+
+    /**
+     * Return from address
+     *
+     * @return String
+     */
+    protected abstract String getFromAddress();
+
+    /**
+     * Perform post balanceTx action
+     *
+     * @param transaction
+     */
+    protected abstract void postBalanceTx(Transaction transaction);
+
+    /**
+     * Verify if the data is valid
+     */
+    protected abstract void verifyData();
+
+    /**
+     * Return fee payer
+     *
+     * @return String
+     */
+    protected abstract String getFeePayer();
+
+}
